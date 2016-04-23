@@ -1,0 +1,12 @@
+table, th , td  
+{
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+.maincontent {
+	height: 500px;
+	background-color: #E6E6E6;
+	width: 650px;
+	float: center;
+}

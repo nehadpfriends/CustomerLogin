@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app = 'customerModule'>
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Customer Application</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="bootstrap.min.css"><!-- load bootstrap -->
+    <style>
+        html                    { overflow-y:scroll; overflow-x:scroll; }
+        body                    { padding-top:50px; }
+    </style>
+
+    <!-- SPELLS -->
+    <!--<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> load jquery -->
+    
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+   <!-- <link rel="stylesheet" type="text/css" href="./cust.css">-->
+    <script src="core.js"></script>
+
+</head>
+<body ng-controller="mainController">
+<script>
+  
+</script>
+
+
+<div class="container">
+
+<h1 style="margin-left:400px; color: #0000ff;font-family: verdana;"><b>List of Owners</b></h1>
+<a href = "#/home" style="float:right;"><b><u> Click here to see list of Doctors<u><b> </a>
+</br>
+</br>
+<a href = "#/list" style="float:right;"><b><u> Click here to create new Practice<u><b> </a>
+</div>
+<div class="maincontent">
+<ng-view></ng-view>
+</div>
+
+
+
+
+
+</body>
+</html>
