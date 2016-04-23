@@ -16,7 +16,7 @@
    
  app.controller('mainController', function($scope,$http){
  $scope.users={};
-
+$scope.practiceList=[];
  var details = {
   _id : " ",
   practiceName : "practiceName ",
@@ -27,7 +27,8 @@
  $scope.details = details;
 
  $scope.showPracticeForm = function(){
-            $scope.practiceForm = true;
+  $scope.practiceList.push({});
+           // $scope.practiceForm = true;
           }
 
 $http.get('/list/Customerlogin')
@@ -40,6 +41,9 @@ $http.get('/list/Customerlogin')
         });
 
  $scope.createcust = function() {
+  
+  $scope.users.practiceList=$scope.practiceList;
+debugger;
         $http.post('/list/Customerlogin',$scope.users)
             .success(function(data) {
                 //$scope.formData = {}; // clear the form so our user is ready to enter another
