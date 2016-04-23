@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var methodOverride = require('method-override');
 var mailer = require("nodemailer");
-
+var request=require('request');
     // Use Smtp Protocol to send Email
     var smtpTransport = mailer.createTransport("SMTP",{
         service: "Gmail",
@@ -34,43 +34,29 @@ var app = express();
     app.use(methodOverride());
 
   var CustomerSchema = new mongoose.Schema({
-	serialNum: Number,
-	name : String,
-	practiceMobile:Number,
-	alternate_number:Number,
-	isPhoneVerified:Boolean,
-	age:Number,
-	dob:Date,
-	gender:String,
-	email:String,
-	isEmailVerified:Boolean,
-	
-	addressLine:String,
-
-	PaymentType:Boolean,
-	CardNumber:String,
-	IdentityType:String,
-	IdentityNumber:String,
-	//Identity ProofImage:String,
-	city:String,
-	pincCode:Number,
-	signature:String,
-	createAt:Date,
-	updateAt:Date,
-	userID:String,
-	Password:String,
-	//practice details
 	practiceName : String,
-	practiceLocation: String,
+	practiceMobile:Number,
+	practiceAlternateMobile:Number,
+	practiceAge:Number,
+	practiceDOB:Date,
+	practiceGender:String,
+	practiceAddressline1:String,
+    practiceAddressline2 : String,
+    practiceLandmark: String,
+	practiceCity:String,
+    practiceState : String,
+    practiceCountry : String,
+	practicePincode:Number,
 	practiceEmail: String,
-    subscriptionType:String,
-	validity: Date,
-	TotalUserAllowed: Number,
-
-   practiceType: String,
+	//practice details
+	practName : String,
+	practLocation: String,
+	multipleSelect : String,
+    
+   
    practicePassword : Number,
    practiceUsername : Number,
-   practName : String
+   
    
 }, {collection: 'Customerlogin'});
 
@@ -99,13 +85,25 @@ console.log(Customerlogin);
         Form.create({
             name:req.body.practiceName,
             practiceName : req.body.practiceName,
-             practiceLocation:req.body.practLocation,
+             practLocation:req.body.practLocation,
              practiceMobile : req.body.practiceMobile,
              subscriptionType:req.body.multipleSelect,
              practiceUsername : req.body.practiceMobile,
              practicePassword : (Math.ceil(Math.random() * 999999999 +100000000)), 
              practiceEmail : req.body.practiceEmail,
              practName : req.body.practName,
+             practiceAlternateMobile : req.body.practiceAlternateMobile,
+             practiceAge : req.body.practiceAge,
+             practiceDOB : req.body.practiceDOB,
+             practiceGender : req.body.practiceGender,
+
+             practiceAddressline1 : req.body.practiceAddressline1,
+             practiceAddressline2 : req.body.practiceAddressline2,
+             practiceLandmark : req.body.practiceLandmark,
+             practiceState : req.body.practiceState,
+             practiceCountry : req.body.practiceCountry,
+             practicePincode : req.body.practicePincode,
+             practiceEmail : req.body. practiceEmail,
             done : false
         }, function(err,Customerlogin) {
             if (err)
@@ -119,27 +117,31 @@ console.log("ssss");            // get and return all the todos after you create
                 }
                 res.send(Customerlogin);
                 
-                var mail = {
-        from: "nehadp <nehadp.friends@gmail.com>",
-        to: req.body.practiceEmail,
-        subject: "eManageHealth",
-        text: "Congrats, Your Registration is successfull",
-        html: "<b>Congrats, Your Registration is successfull on eManageHealth!!!!</b>"
-    }
-                smtpTransport.sendMail(mail, function(error, response){
-        if(error){
-            console.log(error);
-        }else{
-            console.log("Message sent: " + response.message);
-        }
+    //             var mail = {
+    //     from: "nehadp <nehadp.friends@gmail.com>",
+    //     to: req.body.practiceEmail,
+    //     subject: "eManageHealth",
+    //     text: "Congrats, Your Registration is successfull",
+    //     html: "<b>Congrats, Your Registration is successfull on eManageHealth!!!!</b>"
 
-        smtpTransport.close();
+    // }
+    //             smtpTransport.sendMail(mail, function(error, response){
+    //     if(error){
+    //         console.log(error);
+    //     }else{
+    //         console.log("Message sent: " + response.message);
+    //     }
+
+    //     smtpTransport.close();
+    request.post('http://localhost:3002/create/customer/login',data,function(err,response){
+
+    });
+    
     });
 
             });
         });
 
-    });
 
 app.get('/list/Customer', function(req, res){	
 Form.find(function(err, Customerlogin){
